@@ -16,7 +16,6 @@ void div();         // Creates a prototype of a function to be declared later
 
 int main(){
     int x = 25;
-    int numbers[] = {20, 5, 3, 15, 23, 42, 56};     // The variable assigned to an array is actually a pointer to the first item in an array
 
     cout << "The address of x is " << &x << endl;
     cout << "The size of x is " << sizeof(x) << endl;
@@ -34,6 +33,7 @@ int main(){
 
     div();
 
+    int numbers[] = {20, 5, 3, 15, 23, 42, 56};     // The variable assigned to an array is actually a pointer to the first item in an array
     cout << "The first element of the array is: ";
     cout << *numbers << endl;       // We can dereference the array to get values out of it because it is a pointer
     cout << "Proof: " << numbers[0] << endl;
@@ -42,5 +42,5 @@ int main(){
 }
 
 void div(){
-cout << "================================================" << endl;
+    cout << "================================================" << endl;
 }
