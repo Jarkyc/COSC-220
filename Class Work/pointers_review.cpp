@@ -44,3 +44,9 @@ int main(){
 void div(){
     cout << "================================================" << endl;
 }
+
+
+/* Notes:
+- Pointers are not passed by reference by default
+
+ */
