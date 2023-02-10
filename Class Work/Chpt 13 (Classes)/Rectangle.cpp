@@ -3,7 +3,7 @@
 
 // Implementation file for the Rectangle class.
 
-#include "Rectangle.h"   // Needed for the Rectangle class
+#include "Rectangle.h"   // Needed for the Rectangle class. Implementation needs to know whats in the .h
 
 using namespace std;
 

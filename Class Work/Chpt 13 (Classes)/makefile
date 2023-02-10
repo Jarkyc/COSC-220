@@ -1,5 +1,7 @@
 #Created by Don Spickler  1/21/2022
 
+#Makefiles are scripts that tell the compiler how to link all the files properly so all the custom external #includes work.
+
 PROG = prog
 CC = g++
 CPPFLAGS = -g -Wall -std=c++11
