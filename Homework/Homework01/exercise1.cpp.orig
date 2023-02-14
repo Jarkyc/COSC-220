@@ -28,7 +28,7 @@ void insert(int*&, int&, int*, int, int);
 void resize(int*&, int&, int);
 
 
-int main() {
+int main(){
     int size = 0;
 
     cout << "Input Array Size: ";
@@ -42,7 +42,7 @@ int main() {
 
     bool sort = sorted(A, size);
 
-    if(sort) {
+    if(sort){
         cout << "Array is sorted." << endl;
     } else {
         cout << "Array is not sorted." << endl;
@@ -58,7 +58,7 @@ Parameters: None
 Return: None
 Notes:
 **/
-void div() {
+void div(){
     cout << endl;
     cout << "--------------------------------------" << endl;
 }
@@ -69,10 +69,10 @@ Parameters: Size of array
 Return: Int array
 Notes:
 **/
-int* getRandomNumbers(int size) {
+int* getRandomNumbers(int size){
     int* arr = new int[size];
 
-    for(int i = 0; i < size; i++) {
+    for(int i = 0; i < size; i++){
         arr[i] = rand();
     }
 
@@ -86,10 +86,10 @@ Parameters: Int array to be duplicated, int size of array
 Return: duplicated array
 Notes:
 **/
-int* duplicateArray(int *arr, int size) {
+int* duplicateArray(int *arr, int size){
     int* arr2 = new int[size];
 
-    for(int i = 0; i < size; i++) {
+    for(int i = 0; i < size; i++){
         arr2[i] = arr[i];
     }
 
@@ -103,9 +103,9 @@ Parameters: Int array, int size of array
 Return: None
 Notes:
 **/
-void display(int *arr, int size) {
+void display(int *arr, int size){
     cout << " ";
-    for(int i = 0; i < size; i++) {
+    for(int i = 0; i < size; i++){
         cout << arr[i] << " ";
     }
     cout << endl;
@@ -117,13 +117,13 @@ Parameters: Int array, int size of array
 Return: None
 Notes:
 **/
-void sort(int *arr, int size) {
+void sort(int *arr, int size){
     bool chg = true;
 
-    while(chg) {
+    while(chg){
         chg = false;
-        for(int i = 0; i < size - 1; i++) {
-            if(arr[i] > arr[i + 1]) {
+        for(int i = 0; i < size - 1; i++){
+            if(arr[i] > arr[i + 1]){
                 int temp = arr[i+1];
                 arr[i + 1] = arr[i];
                 arr[i] = temp;
@@ -139,9 +139,9 @@ Parameters: Int array, int array size
 Return: True/False
 Notes:
 **/
-bool sorted(int *arr, int size) {
-    for(int i = 0; i < size - 1; i++) {
-        if(arr[i] > arr[i + 1]) {
+bool sorted(int *arr, int size){
+    for(int i = 0; i < size - 1; i++){
+        if(arr[i] > arr[i + 1]){
             return false;
         }
     }
@@ -154,12 +154,12 @@ Parameters: Int first array, int first array size, int second array, int second 
 Return: None
 Notes:
 **/
-void concat(int *&arr1, int &size1, int *arr2, int size2) {
+void concat(int *&arr1, int &size1, int *arr2, int size2){
 
     int finalSize = size1 + size2;
 
     int* newArr = new int[finalSize];
-    for(int i = 0; i < finalSize; i++) {
+    for(int i = 0; i < finalSize; i++){
         if(i < size1) newArr[i] = arr1[i];
         else {
             newArr[i] = arr2[i - size1];
@@ -176,7 +176,7 @@ Parameters: Int array, int array size, int beginning index, int ending index
 Return: None
 Notes:
 **/
-void remove(int *arr, int& size, int begin, int end) {
+void remove(int *arr, int& size, int begin, int end){
 
     // If you try and start at a negative, start at 0
     if(begin < 0) begin = 0;
@@ -185,7 +185,7 @@ void remove(int *arr, int& size, int begin, int end) {
     if(end > size) end = size;
 
     // If you remove the entirety of the array, delete it
-    if((end - begin) == size) {
+    if((end - begin) == size){
         delete[] arr;
         arr = nullptr;
     }
@@ -193,7 +193,7 @@ void remove(int *arr, int& size, int begin, int end) {
     int removed = (end - begin);
     int subSize = size - end;
     int* subArr = new int[subSize];  // Begin by grabbing the ending portion array we are keeping so we can slide it down.
-    for(int i = 0; i < subSize; i++) {
+    for(int i = 0; i < subSize; i++){
         subArr[i] = arr[end + i];
     }
 
@@ -202,7 +202,7 @@ void remove(int *arr, int& size, int begin, int end) {
     div();
 
     // Delete the portion we want removed
-    for(int i = begin; i < end - 1; i++) {
+    for(int i = begin; i < end - 1; i++){
         arr[i] = 0;
     }
 
@@ -221,7 +221,7 @@ Parameters: Int array, int array size
 Return: None
 Notes:
 **/
-void shuffle(int *arr, int size) {
+void shuffle(int *arr, int size){
     int* begin = &arr[0];
     int* end = &arr[size];
 
@@ -234,17 +234,17 @@ Parameters: Int array, int array size, int beginning index, int ending index
 Return: None
 Notes:
 **/
-void sub(int *arr, int &size, int begin, int end) {
+void sub(int *arr, int &size, int begin, int end){
 
     if(begin < 0) begin = 0;
     if(end > size) end = size;
 
     int newSize = end - begin;
     int* subArray = new int[newSize];
-    for(int i = 0; i < newSize; i++) {
+    for(int i = 0; i < newSize; i++){
         subArray[i] = arr[begin + i];
     }
-    for(int i = 0; i < size; i++) {
+    for(int i = 0; i < size; i++){
         if(i < end) arr[i] = subArray[i];
         else arr[i] = 0;
     }
@@ -260,7 +260,7 @@ Parameters: int array 1, int size of array 1, int array 2, int size of array 2, 
 Return: none
 Notes: I don't know why it took so long, but I have lost literal years off of my life span creating this function.
 **/
-void insert(int *&arr, int &size, int *arr2, int size2, int index) {
+void insert(int *&arr, int &size, int *arr2, int size2, int index){
 
     if(index < 0) index - 0;
     if(index > size) index = size;
@@ -271,11 +271,11 @@ void insert(int *&arr, int &size, int *arr2, int size2, int index) {
     int* subArr = new int[subSize];
     int* beg = new int[index];
 
-    for(int i = 0; i < subSize; i++) {
+    for(int i = 0; i < subSize; i++){
         subArr[i] = arr[index + i];
     }
 
-    for(int i = 0; i < index; i++) {
+    for(int i = 0; i < index; i++){
         beg[i] = arr[i];
     }
 
@@ -303,9 +303,9 @@ Parameters: int array, int size, int new size
 Return: None
 Notes:
 **/
-void resize(int *&arr, int &size, int n) {
+void resize(int *&arr, int &size, int n){
     int* newArr = new int[n];
-    for(int i = 0; i < n; i++) {
+    for(int i = 0; i < n; i++){
         if(i < size) newArr[i] = arr[i];
         else newArr[i] = 0;
     }
