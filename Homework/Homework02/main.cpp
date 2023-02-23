@@ -4,21 +4,14 @@
 using namespace std;
 
 int main(){
-    IntArrayList l1;
-    for(int i = 0; i < 20; i++){
-        l1.add(i + 1);
+    IntArrayList li;
+    li.resize(10);
+
+    for(int i = 0; i < 10; i++){
+        li.set(i, i+1);
     }
 
-    IntArrayList l2;
-    l1.duplicate(l2);
-
-    l1.display();
-
-    return 0;
+    li.sub(3, 7);
+    li.display();
 }
 
-/**
-TODO
-- Make resize always set filled to the proper size, but set size to always be a multiple of 10.
-
-**/

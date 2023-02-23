@@ -19,7 +19,6 @@ class IntArrayList{
 private:
     int *list;
     int size;
-    int filled;
 
 public:
     IntArrayList();
@@ -29,12 +28,13 @@ public:
     void display(bool vert = false);
     void displayAddress();
     void sort();
+    bool sorted();
     void add(int);
-    void concat(const IntArrayList&);
+    void concat(IntArrayList&);
     void remove(int, int);
     void shuffle();
     void sub(int, int);
-    void insert(const IntArrayList&, int);
+    void insert(IntArrayList&, int);
     void insert(int, int);
     int get(int);
     void set(int, int);

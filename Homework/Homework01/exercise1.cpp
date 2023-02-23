@@ -36,17 +36,8 @@ int main() {
 
     int *A = getRandomNumbers(size);
 
-    display(A, size);
-    sort(A, size);
-    display(A, size);
+    sub(A, size, begin, end)
 
-    bool sort = sorted(A, size);
-
-    if(sort) {
-        cout << "Array is sorted." << endl;
-    } else {
-        cout << "Array is not sorted." << endl;
-    }
 
     delete[] A;
     A = nullptr;
@@ -254,6 +245,7 @@ void sub(int *arr, int &size, int begin, int end) {
 
     delete[] subArray;
     subArray = nullptr;
+    cout << size;
 }
 
 /**

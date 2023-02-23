@@ -86,7 +86,7 @@ Return: None
 Notes:
 **/
 void IntArrayList::set(int index, int n){
-    if((index <= size) && index > 0){
+    if((index <= size) && index > -1){
         list[index] = n;
     }
 }
@@ -141,5 +141,250 @@ Return:
 Notes:
 **/
 int IntArrayList::length(){
-    return filled;
+    return size;
+}
+
+/**
+Description: Displays the address of the list being stored
+Parameters:
+            None
+Return:
+            None
+Notes:
+**/
+void IntArrayList::displayAddress(){
+    cout << list << endl;
+}
+
+/**
+Description: Bubble sorts the array int ascending order
+Parameters:
+            None
+Return:
+            None
+Notes:
+**/
+void IntArrayList::sort(){
+    bool chg = true;
+
+    while(chg) {
+        chg = false;
+        for(int i = 0; i < size - 1; i++) {
+            if(list[i] > list[i + 1]) {
+                int temp = list[i+1];
+                list[i + 1] = list[i];
+                list[i] = temp;
+                chg = true;
+            }
+        }
+    }
+}
+
+/**
+Description: Returns whether or not the array is sorted in ascending order
+Parameters:
+            None
+Return:
+            None
+Notes:
+**/
+bool IntArrayList::sorted(){
+ for(int i = 0; i < size - 1; i++) {
+        if(list[i] > list[i + 1]) {
+            return false;
+        }
+    }
+    return true;
+}
+
+/**
+Description: Gets the value stored at the input index
+Parameters:
+            (int) index: index to check
+Return:
+        None
+Notes:
+**/
+int IntArrayList::get(int index){
+    return list[index];
+}
+
+/**
+Description: Concatanates the input array onto the end of the current array
+Parameters:
+            (IntArrayList) arr: array to be added
+Return:
+            None
+Notes:
+**/
+void IntArrayList::concat(IntArrayList &arr){
+    int newSize = size + arr.length();
+
+    int* newList = new int[newSize];
+
+    for(int i = 0; i < size; i++){
+        newList[i] = list[i];
+    }
+
+    for(int i = 0; i < arr.length(); i++){
+        newList[i + size] = arr.get(i);
+    }
+
+    delete[] list;
+    list = newList;
+
+    newList = nullptr;
+
+    size = newSize;
+}
+
+/**
+Description: Removes everything in the given bounds, excluding the upper bounds
+Parameters:
+            (int) lower: Lower bound
+            (int) upper: upper bound
+Return:
+            None
+Notes:
+**/
+void IntArrayList::remove(int lower, int upper){
+
+    if(upper - lower + 1== size){
+        delete[] list;
+        list = nullptr;
+    }
+
+    if(lower < 0) lower = 0;
+    if(upper > size) upper = size - 1;
+
+    int removedSize = upper - lower;
+
+    int newSize = size - removedSize;
+    int* newArr = new int[newSize];
+    for(int i = 0; i < lower; i++){
+        newArr[i] = list[i];
+    }
+
+    for(int i = 0; i < size - upper; i++){
+        newArr[lower + i] = list[i + upper];
+    }
+
+
+    delete[] list;
+    list = newArr;
+    newArr = nullptr;
+    size = newSize;
+}
+
+/**
+Description: Randomly shuffles the array
+Parameters:
+            None
+Return:
+            None
+Notes:
+**/
+void IntArrayList::shuffle(){
+    int* begin = &list[0];
+    int* end = &list[size];
+
+    random_shuffle(begin, end);
+}
+
+/**
+Description: Rewrites the list to be a sub array, with the sub array being the information between the input parameters
+Parameters:
+            (int) begin: beginning index to start at
+            (int) end: ending bound to stop at
+Return:
+            None
+Notes:
+**/
+void IntArrayList::sub(int begin, int end){
+    if(begin < 0) begin = 0;
+    if(end > size-1) end = size-1;
+
+    int newSize = end - begin;
+    int* newArr = new int[newSize];
+
+    for(int i = 0; i < newSize; i++){
+        newArr[i] = list[i + begin];
+    }
+
+    delete[] list;
+    list = newArr;
+    newArr = nullptr;
+    size = newSize;
+}
+
+/**
+Description: Inserts the given array into the current one, starting at the given index.
+Parameters:
+            (IntArrayList) arr: list to be inserted
+            (int): index to insert at
+Return:
+            None
+Notes:
+**/
+void IntArrayList::insert(IntArrayList &arr, int index){
+    int newSize = size + arr.length();
+
+    int* newArr = new int[newSize];
+    int currPos = 0;
+    for(int i = 0; i < index; i++){
+        newArr[i] = list[i];
+        currPos++;
+    }
+
+    for(int i = 0; i < arr.length(); i++){
+        newArr[currPos] = arr.get(i);
+        currPos++;
+    }
+
+    for(int i = 0; i < size - index; i++){
+        newArr[currPos] = list[index + i];
+        currPos++;
+    }
+
+    delete[] list;
+    list = newArr;
+    newArr = nullptr;
+    size = newSize;
+
+}
+
+/**
+Description: Inserts the given value at the specified index
+Parameters:
+            (int) val: value to be inserted
+            (int) index: index to be inserted at
+Return:
+            None
+Notes:
+**/
+void IntArrayList::insert(int val, int index){
+
+    if(index < 0) index = 0;
+    if(index > size -1) index = size;
+
+    int newSize = size + 1;
+
+    int* newArr = new int[newSize];
+    int currPos = 0;
+    for(int i = 0; i < index; i++){
+        newArr[i] = list[i];
+        currPos++;
+    }
+    newArr[index] = val;
+    currPos++;
+
+    for(int i = 0; i < size - index; i++){
+        newArr[currPos] = list[index + i];
+        currPos++;
+    }
+
+    delete[] list;
+    list = newArr;
+    newArr = nullptr;
+    size = newSize;
 }
