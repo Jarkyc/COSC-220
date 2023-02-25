@@ -1,3 +1,13 @@
+/**
+Author: Charles Reigle
+Creation Date: 2/23/2023
+Last Update: 2/23/2023
+Description: IntArrayList usage
+User Interface:
+Notes:
+**/
+
+
 #include <iostream>
 #include "IntArrayList.h"
 
