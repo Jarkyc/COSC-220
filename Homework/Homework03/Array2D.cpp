@@ -173,12 +173,16 @@ void Array2D::resize(int r, int c, int defval){
     for(int i = 0; i < r; i++){
         list[i] = new int[c];
         for(int k = 0; k < c; k++){
+            // If the rows exist in the old array, bring them over.
+            // They can only exist if we are in cells within the old arrays bounds
             if(i < rows && k < cols){
                 list[i][k] = A[i][k];
+            // Otherwise populate it with the default value
             } else list[i][k] = defval;
         }
     }
 
+    // Delete all the old data
     for(int i = 0; i < rows; i++){
         delete[] A[i];
     }

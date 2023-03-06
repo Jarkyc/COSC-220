@@ -15,10 +15,12 @@ using namespace std;
  Description: Constructor
  Parameters: w - width of the rectangle.
  h - height of the rectangle.
+ c - color.
  Return: None
  */
 
-Rectangle::Rectangle(double w, double h) : Shape("Rectangle") {
+Rectangle::Rectangle(double w, double h, string c) :
+		Shape("Rectangle", c) {
 	width = w;
 	height = h;
 }
@@ -64,10 +66,10 @@ void Rectangle::draw() {
 	cout << "Drawing Rectangle --- ";
 	cout << "Name: " << name << " : "; // Class now has access to name.
 	// cout << "Name: " << getName() << " : ";
-	cout << "Attributes: " << width << " X " << height << "  Area = " << Area()
-			<< endl;
+	cout << "Attributes: " << width << " X " << height << "  Area = " << Area();
+	cout << "   Color: " << color << endl;
 
-	Shape::draw(); // Calls the super draw function
-	cout << endl;
+//	Shape::draw();
+//	cout << endl;
 }
 
