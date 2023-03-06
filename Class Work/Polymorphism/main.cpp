@@ -15,6 +15,9 @@
 
 using namespace std;
 
+void printArea(Shape &s) // If you want to reference the child object from a function, you need to send it by referenece because it sends it by memory location. Otherwise, the copy constructor is
+						 // called, it creates a new copy, but it creates a new cop of just the parent class. Bad stuff happens.
+
 int main() {
 
 	// You can store "shapes" in an array by creating an array of POINTERS to shapes, and storing their pointers rather than their objects. Trying to store their objects, even if they are of the
@@ -32,4 +35,8 @@ int main() {
 //	delete [] shapes;  // Not the way to go here.
 
 	return 0;
+}
+
+void printArea(Shape &s){
+	cout << "Area: " s.Area() << endl;
 }
