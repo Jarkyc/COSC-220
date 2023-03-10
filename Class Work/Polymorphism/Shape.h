@@ -26,8 +26,8 @@ public:
 
 	// You need to specify these functions as virtual. This tells the compiler to look at the functions on runtime, not compile time. Otherwise, when you try and call the
 	// Functions from a list of Shapes, it will call the parent version of the functions and not the overwritten child versions. Dyanmic binding
-	virtual double Area();
-	virtual void draw();
+	virtual double Area() = 0;
+	virtual void draw() = 0;	// Creates "purely virtual" functions meaning they MUST Be overriitten by child classest
 };
 
 #endif /* SHAPE_H_ */
