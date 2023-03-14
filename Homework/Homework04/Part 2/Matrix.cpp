@@ -38,7 +38,14 @@ Matrix::Matrix(const Matrix &old){
     rows = old.rows;
     cols = old.cols;
 
-    A = old.A;
+    A = new double* [rows];
+    for(int i = 0; i < rows; i++){
+        A[i] = new double[cols];
+        for(int k = 0; k < cols ; k++){
+            A[i][k] = old.get(i, k);
+        }
+    }
+
 }
 
 /**
@@ -50,33 +57,107 @@ Return:
 Notes: 
 **/
 Matrix::~Matrix(){
+
     for(int i = 0; i < rows; i++){
         delete[] A[i];
     }
     delete[] A;
     A = nullptr;
+
 }
 
 Matrix& Matrix::operator =(const Matrix &m){
-    rows = m.rows;
-    cols = m.cols;
 
     for(int i = 0; i < rows; i++){
         delete[] A[i];
     }
     delete[] A;
-    A = m.A;
+
+    rows = m.rows;
+    cols = m.cols;
+
+    A = new double* [rows];
+    for(int i = 0; i < rows; i++){
+        A[i] = new double[cols];
+        for(int k = 0; k < cols; k++){
+            A[i][k] = m.get(i, k);
+        }
+    }
+
+
 
     return *this;
 }
 
-Matrix Matrix:: operator +(const Matrix &b){
-    Matrix m(1, 1, 0)
+Matrix Matrix::operator +(const Matrix &b){
+
+    Matrix m(1, 1, 0);
     if(rows == b.rows && cols == b.cols){
-        m
+        m.resize(rows, cols, 0);
+        for(int i = 0; i < rows; i++){
+            for(int k = 0; k < cols; k++){
+                double x = A[i][k] + b.A[i][k];
+                m.set(i, k, x);
+            }
+        }
 
     }
     return m;
+}
+
+Matrix Matrix::operator -(const Matrix &b){
+
+    Matrix m(1, 1, 0);
+    if(rows == b.rows && cols == b.cols){
+        m.resize(rows, cols, 0);
+        for(int i = 0; i < rows; i++){
+            for(int k = 0; k < cols; k++){
+                double x = A[i][k] - b.A[i][k];
+                m.set(i, k, x);
+            }
+        }
+
+    }
+    return m;
+}
+
+double* Matrix::operator [](int i){
+    return A[i];
+}
+
+Matrix operator *(double a, const Matrix &m){
+    Matrix n(m.rows, m.cols, 0);
+    for(int i = 0; i < m.rows; i++){
+        for(int k = 0; k < m.cols; k++){
+            n.set(i, k, a * m.get(i, k));
+        }
+    }
+    return n;
+}
+
+Matrix operator *(const Matrix &m, double a){
+   Matrix n(m.rows, m.cols, 0);
+    for(int i = 0; i < m.rows; i++){
+        for(int k = 0; k < m.cols; k++){
+            n.set(i, k, a * m.get(i, k));
+        }
+    }
+    return n;
+}
+
+ostream& operator <<(ostream &strm, const Matrix &m){
+    strm << "[";
+    for(int i = 0; i < m.rows; i++){
+        strm << "[";
+        for(int k = 0; k < m.cols; k++){
+            strm << m.get(i, k);
+            if (k < m.cols-1) strm << " ";
+        }
+        strm << "]";
+    }
+    strm << "]";
+
+    return strm;
 }
 
 /**
@@ -92,6 +173,20 @@ void Matrix::display(){
     for(int i = 0; i < rows; i++){
         for(int k = 0; k < cols; k++){
             cout << A[i][k] << " ";
+        }
+        cout << endl;
+    }
+}
+
+
+void Matrix::display(int x){
+    if (x < 0){
+        display();
+        return;
+    }
+    for(int i = 0; i < rows; i++){
+        for(int k = 0; k < cols; k++){
+            cout << setw(x)<< A[i][k];
         }
         cout << endl;
     }
@@ -143,6 +238,7 @@ void Matrix::set(int r, int c, double x){
     A[r][c] = x;
 }
 
+
 /**
 Description: Returns the value that it is at the given index
 Parameters: 
@@ -152,7 +248,7 @@ Return:
             (int) x: The value stored at the given coordinates 
 Notes: 
 **/
-double Matrix::get(int r, int c){
+double Matrix::get(int r, int c) const{
     if (r > rows - 1|| c > cols - 1){
         cout << "Index out of bounds. Max index: ";
         cout << "(" << rows - 1 << "x" << cols - 1 << ")" << endl;
@@ -160,4 +256,56 @@ double Matrix::get(int r, int c){
     }
     
     return A[r][c];
+}
+
+/**
+Description: Resizes the array, keeping any info it had stored if the new sizes are bigger than the old one. Truncates the array if the new sizes are smaller than the
+             last
+Parameters:
+            (int) r: New rows size
+            (int) c: New columns size
+            (int) defval: Default value to set if the positions don't exist in the previous array
+Return:
+            None
+Notes:
+**/
+void Matrix::resize(int r, int c, double defval){
+    if(r < 1) r = 1;
+    if(c < 1) c = 1;
+
+    double** list = new double*[r];
+    for(int i = 0; i < r; i++){
+        list[i] = new double[c];
+        for(int k = 0; k < c; k++){
+            // If the rows exist in the old array, bring them over.
+            // They can only exist if we are in cells within the old arrays bounds
+            if(i < rows && k < cols){
+                list[i][k] = A[i][k];
+            // Otherwise populate it with the default value
+            } else list[i][k] = defval;
+        }
+    }
+
+    // Delete all the old data
+    for(int i = 0; i < rows; i++){
+        delete[] A[i];
+    }
+    delete[] A;
+    A = list;
+
+    list = nullptr;
+
+    rows = r;
+    cols = c;
+
+}
+
+Matrix Matrix::transpose(){
+    Matrix m(cols, rows, 0);
+    for(int i = 0; i < rows; i++){
+        for(int k = 0; k < cols; k++){
+            m.set(k, i, this->get(i,k));
+        }
+    }
+    return m;
 }
