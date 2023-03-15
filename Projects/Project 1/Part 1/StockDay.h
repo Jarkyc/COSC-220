@@ -23,18 +23,18 @@ private:
     double adjClose;
     double high;
     double low;
-    int volume;
+    double volume;
 public:
     StockDay();
-    StockDay(Date, double, double, double, double, double, int);
-    void setData(Date, double, double, double, double, double, int);
+    StockDay(Date, double, double, double, double, double, double);
+    void setData(Date, double, double, double, double, double, double);
     Date getDate();
     double getOpen();
     double getClose();
     double getAdjClose();
     double getHigh();
     double getLow();
-    int getVolume();
+    double getVolume();
     friend ostream &operator << (ostream&, StockDay&);
 
 };

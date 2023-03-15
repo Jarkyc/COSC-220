@@ -10,6 +10,14 @@ Notes:
 
 using namespace std;
 
+/*
+Description: Default Constructor
+Parameters:
+            None
+Return:
+            None
+Notes:
+*/
 StockDay::StockDay(){
     Date dt;
     date = dt;
@@ -21,7 +29,21 @@ StockDay::StockDay(){
     volume = 0;
 }
 
-StockDay::StockDay(Date day, double op, double cl, double adjcl, double hi, double lw, int vol){
+/*
+Description: Overloaded Constructor
+Parameters:
+            (Date) day: Date of Stock
+            (double) op: Open value
+            (double) cl: Close value
+            (double) adjcl: Adjusted close value
+            (double) hi: High value
+            (double) lw: Low value
+            (double) vol: Volume
+Return:
+            None
+Notes:
+*/
+StockDay::StockDay(Date day, double op, double cl, double adjcl, double hi, double lw, double vol){
     date = day;
     open = op;
     close = cl;
@@ -31,7 +53,21 @@ StockDay::StockDay(Date day, double op, double cl, double adjcl, double hi, doub
     volume = vol;
 }
 
-void StockDay::setData(Date day, double op, double cl, double adjcl, double hi, double lw, int vol){
+/*
+Description: Sets all the data to the new parameters
+Parameters:
+            (Date) day: Date of Stock
+            (double) op: Open value
+            (double) cl: Close value
+            (double) adjcl: Adjusted close value
+            (double) hi: High value
+            (double) lw: Low value
+            (double) vol: Volume
+Return:
+            None
+Notes:
+*/
+void StockDay::setData(Date day, double op, double cl, double adjcl, double hi, double lw, double vol){
     date = day;
     open = op;
     close = cl;
@@ -41,35 +77,101 @@ void StockDay::setData(Date day, double op, double cl, double adjcl, double hi, 
     volume = vol;
 }
 
+/*
+Description: returns the stored Date value
+Parameters:
+            None
+Return:
+            (Date) d: Date stored
+Notes:
+*/
 Date StockDay::getDate(){
     return date;
 }
 
+/*
+Description: returns the stored Open value
+Parameters:
+            None
+Return:
+            (Double) open: Open value
+Notes:
+*/
 double StockDay::getOpen(){
     return open;
 }
 
+/*
+Description: returns the stored Close value
+Parameters:
+            None
+Return:
+            (Double) close: Close value
+Notes:
+*/
 double StockDay::getClose(){
     return close;
 }
 
+/*
+Description: returns the stored Adjusted Close value
+Parameters:
+            None
+Return:
+            (Double) adjClose: Adjusted Close value
+Notes:
+*/
 double StockDay::getAdjClose(){
     return adjClose;
 }
 
+/*
+Description: returns the stored High value
+Parameters:
+            None
+Return:
+            (Double) high: High value
+Notes:
+*/
 double StockDay::getHigh(){
     return high;
 }
 
+/*
+Description: returns the stored Low value
+Parameters:
+            None
+Return:
+            (Double) low: Low value
+Notes:
+*/
 double StockDay::getLow(){
     return low;
 }
 
-int StockDay::getVolume(){
+/*
+Description: returns the stored Volume value
+Parameters:
+            None
+Return:
+            (Double) volume: Volume value
+Notes:
+*/
+double StockDay::getVolume(){
     return volume;
 }
 
+/*
+Description: Overloaded stream insertion operator
+Parameters:
+            (ostream) stream: Stream to be inserted to
+            (StockDay) sd: StockDay to insert
+Return:
+            (ostream) stream: Stream inserted into
+Notes:
+*/
 ostream &operator << (ostream &stream, StockDay &sd){
+    stream << fixed;
     stream << setw(12) << left << "Date:";
     stream << sd.date << endl;
 
