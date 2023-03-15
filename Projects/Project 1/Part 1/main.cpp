@@ -105,6 +105,16 @@ int main(){
     return 0;
 }
 
+
+/*
+Description: Loads the given files into a the input StockList
+Parameters:
+            (ifstream) &file: file to be loaded
+            (Stocklist) &obj: StockList to load into
+Return:
+            None
+Notes:
+*/
 void loadDataFile(StockList &obj){
     string details, data;
 
