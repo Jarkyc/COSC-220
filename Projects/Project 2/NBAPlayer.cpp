@@ -1,5 +1,10 @@
-//TODO - Comment
-
+/*
+Author: Charles Reigle
+Creation Date: 4/12/23
+Last Update: 4/12/23
+Description: Implementation of the NBAPlayer class
+Notes:
+*/
 #include <iostream>
 #include "NBAPlayer.h"
 #include "Date.h"

@@ -1,4 +1,10 @@
-// Specification file for the FeetInches class
+/*
+Author: Charles Reigle
+Creation Date:
+Last Update: 4/12/23
+Description: Specifications of the FeetInches class
+Notes:
+*/
 #ifndef FEETINCHES_H
 #define FEETINCHES_H
 

@@ -1,5 +1,10 @@
-//TODO - COMMENTS
-
+/*
+Author: Charles Reigle
+Creation Date: 4/12/23
+Last Update: 4/12/23
+Description: Implementation of the Person class
+Notes:
+*/
 #include "Person.h"
 
 using namespace std;

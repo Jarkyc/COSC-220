@@ -1,4 +1,10 @@
-//TODO - COMMENT
+/*
+Author: Charles Reigle
+Creation Date: 4/12/23
+Last Update: 4/12/23
+Description: Implementation of the NFLPLayer class
+Notes:
+*/
 
 #include <iostream>
 #include "NFLPlayer.h"

@@ -1,4 +1,10 @@
-// Implementation file for the FeetInches class
+/*
+Author: Charles Reigle
+Creation Date:
+Last Update: 4/12/23
+Description: Implementation of the FeetInches class used to store measurements
+Notes:
+*/
 #include <cstdlib>  // Needed for abs()
 #include "FeetInches.h"
 #include <sstream>

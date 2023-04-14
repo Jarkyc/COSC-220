@@ -1,3 +1,11 @@
+/*
+Author: Charles Reigle
+Creation Date: 4/12/23
+Last Update: 4/12/23
+Description: Specifications of the NFLPlayer class, child class of Person. Stores information like jersey number, position code, and team code
+Notes:
+*/
+
 #ifndef NFLPLAYER_H
 #define NFLPLAYER_H
 
