@@ -36,6 +36,7 @@ int main(){
     }
 
     // Sort by name
+    cout << endl;
     cout << "Sorted Player List" << endl;
     sortName(PlayerInfo);
     printList(PlayerInfo);
@@ -66,13 +67,64 @@ int main(){
     cout << endl;
     cout << "Number of Players over 350lbs. = " << BigPlayers.size() << endl;
 
-    // Max height. Sort by name if there are people of the same height
+    // Tallest Players
+    cout << endl;
+    vector<Person*> TallestPlayers;
+    // We can minimize the time by using a list of players we already know are really tall
+    Person *tallest = TallPlayers[0];
+    for(Person *p : TallPlayers){
+        if(p->getHeight() > tallest->getHeight()) tallest = p;
+    }
+
+    for(Person *p : TallPlayers){
+        if(p->getHeight() == tallest->getHeight()) TallestPlayers.push_back(p);
+    }
+    sortName(TallestPlayers);
+    cout << "Tallest Players List" << endl;
+    printList(TallestPlayers);
+
 
     // Oldest player. Sort by name if there are people of the same height
+    cout << endl;
+    vector<Person*> OldestPlayers;
+    Person *oldest = PlayerInfo[0];
+    for(Person *p : PlayerInfo){
+        Date date = p->getDOB();
+        // Disregard empty dates
+        if(date.toString() == "-1/-1/-1") continue;
+        if(p->getDOB() < oldest->getDOB()) oldest = p;
+    }
+
+    // We know from the example there is only one oldest person in the files, however if you want to use another file where maybe there are 2 people born on the same day, we want to check that
+    for(Person *p : PlayerInfo){
+        if(p->getDOB() == oldest->getDOB()) OldestPlayers.push_back(p);
+    }
+    sortName(OldestPlayers);
+    cout << "Oldest Players List" << endl;
+    printList(OldestPlayers);
 
     // Youngest Player. Sort by name if there are people of the same height
+    cout << endl;
+    vector<Person*> YoungestPlayers;
+    Person *youngest = PlayerInfo[0];
+    for(Person *p : PlayerInfo){
+        Date date = p->getDOB();
+        // Disregard empty dates
+        if(date.toString() == "-1/-1/-1") continue;
+        if(p->getDOB() > youngest->getDOB()) youngest = p;
+    }
 
-    // clear all memory!!!!!!!!!!!!!!!
+    for(Person *p : PlayerInfo){
+        if(p->getDOB() == youngest->getDOB()) YoungestPlayers.push_back(p);
+    }
+    sortName(YoungestPlayers);
+    cout << "Youngest Players List" << endl;
+    printList(YoungestPlayers);
+
+    // We only need to delete the universal list because all the lists and pointer variables share the same pointers
+    for(Person *p : PlayerInfo){
+        delete p;
+    }
     return 0;
 }
 
@@ -227,3 +279,4 @@ void sortWeight(vector<Person*> &array){
         array[loc + 1] = temp;
     }
 }
+
