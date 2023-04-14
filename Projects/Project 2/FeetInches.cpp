@@ -183,7 +183,14 @@ FeetInches::operator int() {
 	return feet;
 }
 
-//TODO - Comment
+/*
+Description: Sets the feet and inches based on the input string. Uses Ft'In" format
+Parameters:
+            (string) str: Ft'In" string to process
+Return:
+            None
+Notes:
+*/
 void FeetInches::setLength(string str){
 	stringstream s(str);
 
@@ -197,6 +204,14 @@ void FeetInches::setLength(string str){
 	inches = stoi(inc);
 }
 
+/*
+Description: Returns the stored feet and inches in Ft'In" format string
+Parameters:
+            None
+Return:
+            (string): Ft'In"
+Notes:
+*/
 string FeetInches::toString(){
 	return to_string(feet) + " feet, " + to_string(inches) + " inches";
 }

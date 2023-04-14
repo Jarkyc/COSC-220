@@ -1,5 +1,11 @@
-// TODO - comment
-
+/*
+Author: Charles Reigle
+Creation Date: 4/12/23
+Last Update: 4/13/23
+Description: Main program implementing NBAPlayer and NFLPlayer. Loads in data sheets and properly populates array with the correct data types pertaining to the sport
+User Interface: None
+Notes:
+*/
 #include <iostream>
 #include <sstream>
 #include <fstream>
@@ -128,6 +134,15 @@ int main(){
     return 0;
 }
 
+/*
+Description: Loads in the data file for NBA Players and populates the ector
+Parameters:
+            (string) name: name of the file
+            (vector<Person*>) &list: List to  insert the data objects into
+Return:
+            None
+Notes:
+*/
 void loadNBADataFile(string name, vector<Person*> &list){
     ifstream file;
     file.open("data/" + name);
@@ -156,6 +171,7 @@ void loadNBADataFile(string name, vector<Person*> &list){
         getline(s, weight, ',');
         getline(s, dob);
 
+        // There is a chance the information wont be filled in. Prevents conversion of empty strings
         int jersNum;
         if(jersey == "") jersNum = -1;
         else jersNum = stoi(jersey);
@@ -176,6 +192,15 @@ void loadNBADataFile(string name, vector<Person*> &list){
     file.close();
 }
 
+/*
+Description: Loads the NFL Players data file and populates the vector
+Parameters:
+            (string) name: name of the file
+            (vector<Person*>) &list: List to  insert the data objects into
+Return:
+            None
+Notes:
+*/
 void loadNFLDataFile(string name, vector<Person*> &list){
     ifstream file;
     file.open("data/" + name);
@@ -214,6 +239,7 @@ void loadNFLDataFile(string name, vector<Person*> &list){
         first.erase(first.begin());
 
 
+        // There is a chance the information wont be filled in. Prevents conversion of empty strings
         int jersNum;
         if(strNum == "") jersNum = -1;
         else jersNum = stoi(strNum);
@@ -235,12 +261,28 @@ void loadNFLDataFile(string name, vector<Person*> &list){
     file.close();
 }
 
+/*
+Description: Prints out tehe vector that is sent to it
+Parameters:
+            (vector<Person*>) arr: vector to print
+Return:
+            None
+Notes:
+*/
 void printList(vector<Person*> arr){
     for(Person *p : arr){
         cout << p->toString() << endl;
     }
 }
 
+/*
+Description: Sorts the vector based on the name of the players, in alphebetical order
+Parameters:
+            (vector<Person*>) &array: Array to sort
+Return:
+            None
+Notes:
+*/
 void sortName(vector<Person*> &array) {
     int size = array.size();
     for (int itemsSorted = 1; itemsSorted < size; itemsSorted++) {
@@ -254,6 +296,15 @@ void sortName(vector<Person*> &array) {
     }
 }
 
+
+/*
+Description: Sorts the vector height of the players, with tallest first
+Parameters:
+            (vector<Person*>) &array: Array to sort
+Return:
+            None
+Notes:
+*/
 void sortHeight(vector<Person*> &array){
     int size = array.size();
     for (int itemsSorted = 1; itemsSorted < size; itemsSorted++) {
@@ -267,6 +318,15 @@ void sortHeight(vector<Person*> &array){
     }
 }
 
+
+/*
+Description: Sorts the vector based on the weight of the players, with largest at the top
+Parameters:
+            (vector<Person*>) &array: Array to sort
+Return:
+            None
+Notes:
+*/
 void sortWeight(vector<Person*> &array){
     int size = array.size();
     for (int itemsSorted = 1; itemsSorted < size; itemsSorted++) {

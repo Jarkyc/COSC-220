@@ -170,7 +170,14 @@ ostream &operator << (ostream &stream, Date &d){
     return stream;
 }
 
-//TODO - Comment
+/*
+Description: Sets the date based on the input string. Takes in m/d/yyyy format
+Parameters:
+            (string) str: string to process
+Return:
+            None
+Notes:
+*/
 void Date::setMDY(string str){
     stringstream s(str);
 
@@ -186,8 +193,14 @@ void Date::setMDY(string str){
     day = stoi(d);
     year = stoi(y);
 }
-
-//TODO - Comment
+/*
+Description: returns a string of the stored month day and year in m/d/yyyy format
+Parameters:
+            None
+Return:
+            (string): m/d/yyyy
+Notes:
+*/
 string Date::toString(){
     return to_string(month) + "/" + to_string(day) + "/" + to_string(year);
 }
