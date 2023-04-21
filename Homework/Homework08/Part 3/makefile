@@ -1,5 +1,9 @@
 #Created by Don Spickler  1/21/2022
+<<<<<<< HEAD
+#Edited by Charles Reigle 3/9/2023
+=======
 #Edited by Charles Reigle 3/1/2023
+>>>>>>> master
 
 PROG = prog
 CC = g++
