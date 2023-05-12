@@ -58,7 +58,7 @@ int main(){
         // Process every core
         for(int c = 0; c < cores; c++){
             // If the core is empty
-            if(cpu[c] == 0){
+            if(cpu[c] <= 0){
 
                 // Increase the idle time if there are no process
                 if(q.isEmpty()){
@@ -69,13 +69,11 @@ int main(){
                     Process newP = q.dequeue();
                     cpu[c] = newP.getExeTime();
                     executed++;
-                    totalWait += i - newP.getTimeStamp();
+                    totalWait += (i - newP.getTimeStamp());
                 }
-            } else {
-                // Execute the process
-                cpu[c] = cpu[c] - 1;
             }
-
+            // Execute the process
+            cpu[c] = cpu[c] - 1;
         }
         // Implement the idle time
         idleTime += idleAmnt;
@@ -91,7 +89,7 @@ int main(){
     }
 
     int totalExeTime = 0;                   //The execution time of all the Processes still waiting to be ran
-    int maxWait = 0                         //Max wait time out of all the processes still in queue
+    int maxWait = 0;                        //Max wait time out of all the processes still in queue
     unsigned long queuedWait = 0;           //Total wait time of all the Processes still in queue
 
     // If there Processes never ran, gather all their data
@@ -117,6 +115,8 @@ int main(){
     cout << "Total Execution Time Needed for Unprocessed Processes = " << totalExeTime << endl;
     cout << "Total Wait Time for Unprocessed Processes = " << queuedWait << endl;
     cout << "Maximum Wait Time for Unprocessed Processes = " << maxWait << endl;
+
+    delete[] cpu;
     return 0;
 }
 
